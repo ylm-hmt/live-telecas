@@ -18,7 +18,7 @@ const server = http.createServer((req, res) => {
 });
 server.listen(PORT, () => {
   console.log('service start successful', `http://127.0.0.1:${PORT}`)
-  // openUrl(`http://127.0.0.1:${PORT}`)
+  openUrl(`http://127.0.0.1:${PORT}`)
 });
 
 server.on('error', (e) => {
