@@ -1,0 +1,23 @@
+{
+  "name": "live-telecas",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "live": "node live.js",
+    "play": "node play.js",
+    "service": "node service.js"
+  },
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "child_process": "^1.0.2",
+    "fs": "0.0.1-security",
+    "http": "0.0.0",
+    "node-media-server": "^2.1.4",
+    "path": "^0.12.7"
+  },
+  "dependencies": {
+    "flv.js": "^1.5.0"
+  }
+}

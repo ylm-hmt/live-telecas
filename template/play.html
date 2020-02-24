@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>查看直播</title>
+    <style>
+      #video {
+        width:480px;
+        height:480px;
+        object-fit: fill;
+        margin: 0 auto;
+        display: block;
+        border: 1px solid black;
+        background-color: black;
+      }
+      #btn {
+        margin: 20px auto;
+        display: block;
+        width: 100px;
+        height: 44px;
+      }
+    </style>
+    <script type="text/javascript" src="./utils/flv.min.js"></script>
+  </head>
+  <body>
+    <div>
+      <video id="video" autoplay v-show="showVideo55"></video>
+      <button id="btn" type="button">播放</button>
+    </div>
+  </body>
+  <script>
+    const canvas = document.getElementsByTagName('canvas')[0];
+    const video = document.getElementById('video');
+    const btn = document.getElementById('btn');
+    let flvPlayer = null
+    const startPlay = () =>{
+    flvPlayer = flvjs.createPlayer({
+      type: 'flv',
+      url: 'http://127.0.0.1:8090/live/ylm.flv',
+    });
+      if (flvjs.isSupported()) {
+        flvPlayer.attachMediaElement(video);
+        flvPlayer.load();
+        flvPlayer.play();
+        btn.innerText = '暂停'
+      }
+    }
+    const endPlay = () => {
+      flvPlayer.pause()
+      flvPlayer.unload()
+      flvPlayer.detachMediaElement()
+      flvPlayer.destroy()
+      flvPlayer = null
+      btn.innerText = '播放'
+    }
+    btn.addEventListener('click', () => { 
+      if (btn.innerText === '播放') {
+        startPlay();
+      } else if (btn.innerText === '暂停') {
+        endPlay();
+      }
+    })
+  </script>
+</html>
