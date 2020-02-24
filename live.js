@@ -1,16 +1,24 @@
 const http = require('http');
 const fs = require('fs');
 const path = require('path');
+const openUrl = require('./utils/openUrl');
+
 let PORT = 8001
 
 const server = http.createServer((req, res) => {
   res.writeHead(200, {'Content-Type': 'text/html; charset=utf-8'});
-  res.end(fs.readFileSync(__dirname + '/live.html', {
+  if (req.url.indexOf('utils') > -1) {
+    res.end(fs.readFileSync(__dirname + req.url, {
+      encoding: 'utf-8'
+    }));
+  }
+  res.end(fs.readFileSync(__dirname + '/template/live.html', {
       encoding: 'utf-8'
   }));
 });
 server.listen(PORT, () => {
   console.log('service start successful', `http://127.0.0.1:${PORT}`)
+  // openUrl(`http://127.0.0.1:${PORT}`)
 });
 
 server.on('error', (e) => {
